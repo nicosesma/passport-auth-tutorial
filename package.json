@@ -5,11 +5,17 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "buildwatch": "babel src -d dist --watch --copy-files",
+    "spcl": "rm -rf node_modules ; rm -rf dist ; npm install ; npm run buildwatch",
+    "start": "nodemon dist/server.js"
   },
   "author": "Nicolas Sesma",
   "license": "ISC",
   "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "connect-flash": "^0.1.1",
