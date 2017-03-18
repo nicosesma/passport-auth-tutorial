@@ -22,6 +22,12 @@ module.exports = (app, passport) => {
     request.logout()
     response.redirect('/')
   })
+
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/profile',
+    failureRedirect: '/signup',
+    failureFlash: true
+  }))
 }
 
 const isLoggedIn = (request, response, next) => {

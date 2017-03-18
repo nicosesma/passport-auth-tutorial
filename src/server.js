@@ -14,9 +14,10 @@ const port = process.env.PORT || 8000
 
 mongoose.connect(configDB.url)
 
-// require('./config/passport.js')(passport)
 
 const app = express()
+
+require('./config/passport')(passport)
 
 app.use(morgan('dev'))
 app.use(cookieParser())
