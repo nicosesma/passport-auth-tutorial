@@ -25,12 +25,14 @@ app.use(bodyParser())
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(session({secret: 'ec33c86b2ccc3d7cc1ea000eb6214f5ab1263c55'}))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
-require('./app/routes.js')(app, passport)
+require('./app/routes')(app, passport)
 
 app.listen(port)
 console.log(`The port is listening at http://localhost:${port}`)
