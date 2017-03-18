@@ -8,6 +8,7 @@ module.exports = (app, passport) => {
   })
 
   app.get('/signup', (request, response) => {
+    console.log('request get signup', request)
     response.render('signup', {message: request.flash('signupMessage')})
   })
 
@@ -23,11 +24,14 @@ module.exports = (app, passport) => {
     response.redirect('/')
   })
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-    failureFlash: true
-  }))
+  app.post('/signup', (request, response, passport) =>  {
+    console.log('in post signup', request)
+    return passport.authenticate('local-signup', {
+      successRedirect: '/profile',
+      failureRedirect: '/',
+      failureFlash: true
+    })
+  })
 }
 
 const isLoggedIn = (request, response, next) => {

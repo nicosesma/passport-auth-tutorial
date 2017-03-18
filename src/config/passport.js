@@ -19,6 +19,7 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
   (request, email, password, done) => {
+    console.log('in passport local startegy callback', request)
     process.nextTick(() => {
       User.findOne({'local.email': email }, (error, user) => {
         if(error)
